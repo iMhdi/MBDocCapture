@@ -8,6 +8,7 @@ MBDocCapture makes it easy to add document scanning functionalities to your iOS 
                        DESC
 
   s.homepage         = 'https://github.com/iMhdi/MBDocCapture'
+  s.swift-version    = '4.2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'El Mahdi BOUKHRIS' => 'm.boukhris@gmail.com' }
   s.source           = { :git => 'https://github.com/Mahdi/MBDocCapture.git', :tag => s.version.to_s }
