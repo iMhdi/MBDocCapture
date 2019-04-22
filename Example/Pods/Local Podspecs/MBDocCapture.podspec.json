@@ -1,0 +1,22 @@
+{
+  "name": "MBDocCapture",
+  "version": "0.1.0",
+  "summary": "A short description of MBDocCapture.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Mahdi/MBDocCapture",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Mahdi": "pqvf5779@win.mgt.w-ha.net"
+  },
+  "source": {
+    "git": "https://github.com/Mahdi/MBDocCapture.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MBDocCapture/Classes/**/*"
+}

@@ -1,0 +1,6 @@
+framework module Pods_MBDocCapture_Tests {
+  umbrella header "Pods-MBDocCapture_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

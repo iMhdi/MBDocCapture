@@ -1,0 +1,6 @@
+framework module MBDocCapture {
+  umbrella header "MBDocCapture-umbrella.h"
+
+  export *
+  module * { export * }
+}

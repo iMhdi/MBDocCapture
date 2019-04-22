@@ -1,0 +1,16 @@
+PODS:
+  - MBDocCapture (0.1.0)
+
+DEPENDENCIES:
+  - MBDocCapture (from `../`)
+
+EXTERNAL SOURCES:
+  MBDocCapture:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MBDocCapture: 741a0cb836d185b4400c9fde6bc29688e4bc6c16
+
+PODFILE CHECKSUM: 289c8757248904e73f8439d279b4e92dec921cb5
+
+COCOAPODS: 1.5.3
