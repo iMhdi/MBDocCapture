@@ -17,7 +17,7 @@ MBDocCapture makes it easy to add document scanning functionalities to your iOS 
   s.source_files = 'MBDocCapture/Classes/**/*'
   
   s.resource_bundles = {
-      'MBDocCapture' => ['MBDocCapture/Icons/**/*.png']
+      'MBDocCapture' => ['MBDocCapture/**/*.png']
   }
 
   s.frameworks = 'CoreGraphics', 'CoreImage'
