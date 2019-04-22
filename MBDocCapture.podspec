@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = 'MBDocCapture'
   s.version          = '0.1.0'
-  s.summary          = 'MBDocCapture makes it easy to add document scanning functionalities to your iOS app but also image editing (Cropping and contrast enhacement).'
+  s.summary          = 'MBDocCapture makes it easy to add document scanning functionalities to your iOS.'
 
   s.description      = <<-DESC
 MBDocCapture makes it easy to add document scanning functionalities to your iOS app but also image editing (Cropping and contrast enhacement).
