@@ -16,8 +16,8 @@ Pod::Spec.new do |spec|
     spec.author           = { 'El Mahdi BOUKHRIS' => 'm.boukhris@gmail.com' }
     spec.source           = { :git => 'https://github.com/iMhdi/MBDocCapture.git', :tag => spec.version.to_s }
     
-    spec.source_files = 'MBDocCapture/Classes/**/*'
-    spec.resources = 'MBDocCapture/**/*.{strings,png}'
+    spec.source_files   = 'MBDocCapture/Classes/**/*'
+    spec.resources      = 'MBDocCapture/**/*.{strings,png}'
     
-    spec.frameworks = 'CoreGraphics', 'CoreImage'
+    spec.frameworks     = 'CoreGraphics', 'CoreImage'
 end

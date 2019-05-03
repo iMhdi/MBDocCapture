@@ -161,7 +161,7 @@ public final class ImageScannerController: UINavigationController {
 /// Data structure containing information about a scan.
 public struct ImageScannerResults {
     
-    /// The original image taken by the user, prior to the cropping applied by WeScan.
+    /// The original image taken by the user, prior to the cropping applied.
     public var originalImage: UIImage
     
     /// The deskewed and cropped orignal image using the detected rectangle, without any filters.
