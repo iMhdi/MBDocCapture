@@ -45,21 +45,21 @@ final class ReviewViewController: UIViewController {
     }()
     
     lazy private var enhanceButton: UIBarButtonItem = {
-        let image = UIImage(named: "enhance", in: Bundle(for: ReviewViewController.self), compatibleWith: nil)
+        let image = UIImage(named: "enhance", in: bundle(), compatibleWith: nil)
         let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(toggleEnhancedImage))
         button.tintColor = .white
         return button
     }()
     
     lazy private var rotateButton: UIBarButtonItem = {
-        let image = UIImage(named: "rotate", in: Bundle(for: ReviewViewController.self), compatibleWith: nil)
+        let image = UIImage(named: "rotate", in: bundle(), compatibleWith: nil)
         let button = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(rotateImage))
         button.tintColor = .white
         return button
     }()
     
     lazy private var doneButton: UIBarButtonItem = {
-        let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: Bundle(for: ReviewViewController.self), value: "Next", comment: "")
+        let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: bundle(), value: "Next", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(finishScan))
         button.tintColor = navigationController?.navigationBar.tintColor
         return button
@@ -87,7 +87,7 @@ final class ReviewViewController: UIViewController {
         setupToolbar()
         setupConstraints()
         
-        title = NSLocalizedString("mbdoccapture.scan_review_title", tableName: nil, bundle: Bundle(for: ReviewViewController.self), value: "Confirmation", comment: "")
+        title = NSLocalizedString("mbdoccapture.scan_review_title", tableName: nil, bundle: bundle(), value: "Confirmation", comment: "")
         navigationItem.rightBarButtonItem = doneButton
     }
     

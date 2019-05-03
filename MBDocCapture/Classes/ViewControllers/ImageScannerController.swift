@@ -177,3 +177,17 @@ public struct ImageScannerResults {
     public var detectedRectangle: Rectangle
     
 }
+
+extension UIViewController {
+
+    func bundle() -> Bundle {
+        let frameworkBundle = Bundle(for: type(of: self))
+        let bundleURL = frameworkBundle.resourceURL?.appendingPathComponent("MBDocCapture.bundle")
+        
+        if let bundle = Bundle(url: bundleURL!) {
+            return bundle
+        } else {
+            return Bundle(for: type(of: self))
+        }
+    }
+}

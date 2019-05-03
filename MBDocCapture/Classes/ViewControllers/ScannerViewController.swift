@@ -67,7 +67,7 @@ final class ScannerViewController: UIViewController {
     }
     
     lazy private var cancelButton: UIBarButtonItem = {
-        let title = NSLocalizedString("mbdoccapture.cancel_button", tableName: nil, bundle: Bundle(for: ScannerViewController.self), value: "Cancel", comment: "")
+        let title = NSLocalizedString("mbdoccapture.cancel_button", tableName: nil, bundle: bundle(), value: "Cancel", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(cancelImageScannerController))
         button.tintColor = .white
         return button
@@ -337,7 +337,7 @@ extension ScannerViewController: RectangleDetectionDelegateProtocol {
         prepOverlayView.backgroundColor = UIColor(hexString: "FFFFFF99")
         
         let image = UIImageView(frame: CGRect(x: (view.frame.width - 40) / 2, y: 16, width: 40, height: 40))
-        let icon = UIImage(named: "ic_touch", in: Bundle(for: ScannerViewController.self), compatibleWith: nil)
+        let icon = UIImage(named: "ic_touch", in: bundle(), compatibleWith: nil)
         image.image = icon
         prepOverlayView.addSubview(image)
         
@@ -347,7 +347,7 @@ extension ScannerViewController: RectangleDetectionDelegateProtocol {
         label.numberOfLines = 0
         label.textColor = .black
         label.textAlignment = .center
-        label.text = NSLocalizedString("mbdoccapture.document_capture_flip", tableName: nil, bundle: Bundle(for: EditScanViewController.self), value: "Flip your document and Touch the screen when you're ready to start the capture.", comment: "")
+        label.text = NSLocalizedString("mbdoccapture.document_capture_flip", tableName: nil, bundle: bundle(), value: "Flip your document and Touch the screen when you're ready to start the capture.", comment: "")
         prepOverlayView.addSubview(label)
         
         let button = UIButton(frame: view.bounds)
