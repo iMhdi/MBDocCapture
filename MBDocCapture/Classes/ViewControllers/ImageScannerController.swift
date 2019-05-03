@@ -139,9 +139,9 @@ public final class ImageScannerController: UINavigationController {
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
-        
+    
     override public var shouldAutorotate: Bool {
-        return false
+        return true
     }
     
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {

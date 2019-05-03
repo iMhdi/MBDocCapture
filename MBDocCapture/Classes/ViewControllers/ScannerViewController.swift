@@ -59,7 +59,7 @@ final class ScannerViewController: UIViewController {
     }
     
     override public var shouldAutorotate: Bool {
-        return false
+        return true
     }
     
     override public var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
@@ -79,9 +79,9 @@ final class ScannerViewController: UIViewController {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         return activityIndicator
     }()
-
+    
     // MARK: - Life Cycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -97,6 +97,7 @@ final class ScannerViewController: UIViewController {
         originalBarStyle = navigationController?.navigationBar.barStyle
         
         NotificationCenter.default.addObserver(self, selector: #selector(subjectAreaDidChange), name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: nil)
+        //        NotificationCenter.default.addObserver(self, selector: #selector(updateCameraOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +108,7 @@ final class ScannerViewController: UIViewController {
         rectView.removeRectangle()
         captureSessionManager?.start()
         UIApplication.shared.isIdleTimerDisabled = true
-
+        
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.addSubview(visualEffectView)
@@ -115,11 +116,18 @@ final class ScannerViewController: UIViewController {
         
         navigationController?.navigationBar.barStyle = .blackTranslucent
         
+        navigationController?.setToolbarHidden(true, animated: false)
+        
         if CaptureSession.current.isScanningTwoFacedDocument {
             if let _ = CaptureSession.current.firstScanResult {
                 displayPrepOverlay()
             }
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        updateCameraOrientation()
     }
     
     override func viewDidLayoutSubviews() {
@@ -140,6 +148,26 @@ final class ScannerViewController: UIViewController {
         visualEffectView.removeFromSuperview()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.barStyle = originalBarStyle ?? .default
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        updateCameraOrientation()
+    }
+    
+    @objc private func updateCameraOrientation() {
+        if UIDevice.current.orientation == .landscapeRight {
+            videoPreviewLayer.connection!.videoOrientation       = .landscapeLeft
+        } else if UIDevice.current.orientation == .landscapeLeft {
+            videoPreviewLayer.connection!.videoOrientation       = .landscapeRight
+        } else if UIDevice.current.orientation == .portrait {
+            videoPreviewLayer.connection!.videoOrientation       = .portrait
+        } else if UIDevice.current.orientation == .portraitUpsideDown {
+            videoPreviewLayer.connection!.videoOrientation       = .portraitUpsideDown
+        }
+        
+        videoPreviewLayer.frame = view.layer.bounds
     }
     
     // MARK: - Setups
@@ -290,9 +318,9 @@ extension ScannerViewController: RectangleDetectionDelegateProtocol {
         let scaledImageSize = imageSize.applying(scaleTransform)
         
         let rotationTransform = CGAffineTransform(rotationAngle: CGFloat.pi / 2.0)
-
+        
         let imageBounds = CGRect(origin: .zero, size: scaledImageSize).applying(rotationTransform)
-
+        
         let translationTransform = CGAffineTransform.translateTransform(fromCenterOfRect: imageBounds, toCenterOfRect: rectView.bounds)
         
         let transforms = [scaleTransform, rotationTransform, translationTransform]
