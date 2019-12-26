@@ -61,7 +61,7 @@ final class ReviewViewController: UIViewController {
     lazy private var doneButton: UIBarButtonItem = {
         let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: bundle(), value: "Next", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(finishScan))
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = .white
         return button
     }()
     

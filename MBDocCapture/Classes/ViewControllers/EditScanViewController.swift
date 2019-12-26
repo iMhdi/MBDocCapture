@@ -51,7 +51,7 @@ final class EditScanViewController: UIViewController {
     lazy private var nextButton: UIBarButtonItem = {
         let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: bundle(), value: "Next", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(pushReviewController))
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = .white
         return button
     }()
 
