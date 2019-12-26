@@ -28,7 +28,7 @@ import UIKit
 import AVFoundation
 
 /// The `ScannerViewController` offers an interface to give feedback to the user regarding rectangles that are detected. It also gives the user the opportunity to capture an image with a detected rectangle.
-final class ScannerViewController: UIViewController {
+final class ScannerViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     
     private var prepOverlayView: UIView!
     
@@ -40,13 +40,7 @@ final class ScannerViewController: UIViewController {
     
     /// The view that draws the detected rectangles.
     private let rectView = RectangleView()
-    
-    /// The visual effect (blur) view used on the navigation bar
-    private let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-    
-    /// The original bar style that was set by the host app
-    private var originalBarStyle: UIBarStyle?
-    
+            
     lazy private var shutterButton: ShutterButton = {
         let button = ShutterButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -93,9 +87,7 @@ final class ScannerViewController: UIViewController {
         
         captureSessionManager = CaptureSessionManager(videoPreviewLayer: videoPreviewLayer)
         captureSessionManager?.delegate = self
-        
-        originalBarStyle = navigationController?.navigationBar.barStyle
-        
+                
         NotificationCenter.default.addObserver(self, selector: #selector(subjectAreaDidChange), name: NSNotification.Name.AVCaptureDeviceSubjectAreaDidChange, object: nil)
         //        NotificationCenter.default.addObserver(self, selector: #selector(updateCameraOrientation), name: UIDevice.orientationDidChangeNotification, object: nil)
     }
@@ -108,14 +100,7 @@ final class ScannerViewController: UIViewController {
         rectView.removeRectangle()
         captureSessionManager?.start()
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        navigationController?.navigationBar.isTranslucent = true
-        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationController?.navigationBar.addSubview(visualEffectView)
-        navigationController?.navigationBar.sendSubviewToBack(visualEffectView)
-        
-        navigationController?.navigationBar.barStyle = .blackTranslucent
-        
+                
         navigationController?.setToolbarHidden(true, animated: false)
         
         if CaptureSession.current.isScanningTwoFacedDocument {
@@ -134,20 +119,11 @@ final class ScannerViewController: UIViewController {
         super.viewDidLayoutSubviews()
         
         videoPreviewLayer.frame = view.layer.bounds
-        
-        let statusBarHeight = UIApplication.shared.statusBarFrame.size.height
-        let visualEffectRect = self.navigationController?.navigationBar.bounds.insetBy(dx: 0, dy: -(statusBarHeight)).offsetBy(dx: 0, dy: -statusBarHeight)
-        
-        visualEffectView.frame = visualEffectRect ?? CGRect.zero
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.isIdleTimerDisabled = false
-        
-        visualEffectView.removeFromSuperview()
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.barStyle = originalBarStyle ?? .default
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -183,6 +159,11 @@ final class ScannerViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.setLeftBarButton(cancelButton, animated: false)
+        
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = false
+            navigationController?.presentationController?.delegate = self
+        }
     }
     
     private func setupConstraints() {
@@ -217,6 +198,10 @@ final class ScannerViewController: UIViewController {
         }
         
         NSLayoutConstraint.activate(rectViewConstraints + shutterButtonConstraints + activityIndicatorConstraints)
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
     }
     
     // MARK: - Tap to Focus

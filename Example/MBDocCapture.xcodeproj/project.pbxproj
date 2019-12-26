@@ -151,7 +151,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = L4QNEF5BYM;
+						DevelopmentTeam = 3KP92HUCY4;
 						LastSwiftMigration = 0900;
 					};
 				};
@@ -161,6 +161,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -370,7 +371,7 @@
 			baseConfigurationReference = 69C18151CF8697B4DFD43821 /* Pods-MBDocCapture_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L4QNEF5BYM;
+				DEVELOPMENT_TEAM = 3KP92HUCY4;
 				INFOPLIST_FILE = MBDocCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -387,7 +388,7 @@
 			baseConfigurationReference = 4A501EB817244E784075C859 /* Pods-MBDocCapture_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = L4QNEF5BYM;
+				DEVELOPMENT_TEAM = AZ7KRNMEKM;
 				INFOPLIST_FILE = MBDocCapture/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

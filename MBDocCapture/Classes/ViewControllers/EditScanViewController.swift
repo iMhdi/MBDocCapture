@@ -28,7 +28,7 @@ import UIKit
 import AVFoundation
 
 /// The `EditScanViewController` offers an interface for the user to edit the detected rectangle.
-final class EditScanViewController: UIViewController {
+final class EditScanViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
@@ -51,7 +51,7 @@ final class EditScanViewController: UIViewController {
     lazy private var nextButton: UIBarButtonItem = {
         let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: bundle(), value: "Next", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(pushReviewController))
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = .white
         return button
     }()
 
@@ -85,6 +85,11 @@ final class EditScanViewController: UIViewController {
         setupConstraints()
         title = NSLocalizedString("mbdoccapture.scan_edit_title", tableName: nil, bundle: bundle(), value: "Trimming", comment: "")
         navigationItem.rightBarButtonItem = nextButton
+        
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = false
+            navigationController?.presentationController?.delegate = self
+        }
         
         zoomGestureController = ZoomGestureController(image: image, rectView: rectView)
         
@@ -133,6 +138,10 @@ final class EditScanViewController: UIViewController {
         ]
         
         NSLayoutConstraint.activate(rectViewConstraints + imageViewConstraints)
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
     }
     
     // MARK: - Actions

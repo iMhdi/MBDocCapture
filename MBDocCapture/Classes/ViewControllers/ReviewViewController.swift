@@ -27,7 +27,7 @@
 import UIKit
 
 /// The `ReviewViewController` offers an interface to review the image after it has been cropped and deskwed according to the passed in rectangle.
-final class ReviewViewController: UIViewController {
+final class ReviewViewController: UIViewController, UIAdaptivePresentationControllerDelegate {
     
     private var rotationAngle = Measurement<UnitAngle>(value: 0, unit: .degrees)
     private var enhancedImageIsAvailable = false
@@ -61,7 +61,7 @@ final class ReviewViewController: UIViewController {
     lazy private var doneButton: UIBarButtonItem = {
         let title = NSLocalizedString("mbdoccapture.next_button", tableName: nil, bundle: bundle(), value: "Next", comment: "")
         let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(finishScan))
-        button.tintColor = navigationController?.navigationBar.tintColor
+        button.tintColor = .white
         return button
     }()
     
@@ -87,6 +87,11 @@ final class ReviewViewController: UIViewController {
         setupToolbar()
         setupConstraints()
         
+        if #available(iOS 13.0, *) {
+            isModalInPresentation = false
+            navigationController?.presentationController?.delegate = self
+        }
+        
         title = NSLocalizedString("mbdoccapture.scan_review_title", tableName: nil, bundle: bundle(), value: "Confirmation", comment: "")
         navigationItem.rightBarButtonItem = doneButton
     }
@@ -103,6 +108,10 @@ final class ReviewViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.setToolbarHidden(true, animated: true)
+    }
+    
+    func presentationControllerShouldDismiss(_ presentationController: UIPresentationController) -> Bool {
+        return false
     }
     
     // MARK: Setups
@@ -149,7 +158,7 @@ final class ReviewViewController: UIViewController {
         reloadImage()
         
         if isCurrentlyDisplayingEnhancedImage {
-            enhanceButton.tintColor = UIColor(red: 64 / 255, green: 159 / 255, blue: 255 / 255, alpha: 1.0)
+            enhanceButton.tintColor = UIColor(red: 64 / 255.0, green: 159 / 255.0, blue: 255 / 255.0, alpha: 1.0)
         } else {
             enhanceButton.tintColor = .white
         }
