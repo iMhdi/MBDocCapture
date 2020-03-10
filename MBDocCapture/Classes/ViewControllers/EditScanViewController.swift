@@ -54,6 +54,13 @@ final class EditScanViewController: UIViewController, UIAdaptivePresentationCont
         button.tintColor = .white
         return button
     }()
+    
+    lazy private var cancelButton: UIBarButtonItem = {
+        let title = NSLocalizedString("mbdoccapture.cancel_button", tableName: nil, bundle: bundle(), value: "Cancel", comment: "")
+        let button = UIBarButtonItem(title: title, style: .plain, target: self, action: #selector(dismissEditScanViewControllerController))
+        button.tintColor = .white
+        return button
+    }()
 
     /// The image the rectangle was detected on.
     private let image: UIImage
@@ -85,7 +92,8 @@ final class EditScanViewController: UIViewController, UIAdaptivePresentationCont
         setupConstraints()
         title = NSLocalizedString("mbdoccapture.scan_edit_title", tableName: nil, bundle: bundle(), value: "Trimming", comment: "")
         navigationItem.rightBarButtonItem = nextButton
-        
+        navigationItem.leftBarButtonItem = cancelButton
+              
         if #available(iOS 13.0, *) {
             isModalInPresentation = false
             navigationController?.presentationController?.delegate = self
@@ -146,6 +154,9 @@ final class EditScanViewController: UIViewController, UIAdaptivePresentationCont
     
     // MARK: - Actions
     
+    @objc func dismissEditScanViewControllerController() {
+        dismiss(animated: true) 
+    }
     @objc func pushReviewController() {
         guard let rect = rectView.rect,
             let ciImage = CIImage(image: image) else {
