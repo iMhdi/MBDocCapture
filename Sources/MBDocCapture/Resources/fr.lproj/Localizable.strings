@@ -1,0 +1,17 @@
+/* MBDocCapture — chaînes françaises par défaut. Surchargez-les via `MBDocCaptureConfiguration.strings`. */
+
+"mbdoccapture.scan_edit_title"        = "Recadrage";
+"mbdoccapture.scan_review_title"      = "Vérification";
+"mbdoccapture.document_capture_flip"  = "Retournez votre document, puis touchez l'écran pour scanner l'autre face.";
+"mbdoccapture.next_button"            = "Suivant";
+"mbdoccapture.done_button"            = "Terminer";
+"mbdoccapture.cancel_button"          = "Annuler";
+"mbdoccapture.hint_searching"         = "Cadrez le document";
+"mbdoccapture.hint_hold_still"        = "Ne bougez plus…";
+"mbdoccapture.hint_manual"            = "Touchez le déclencheur pour scanner";
+"mbdoccapture.auto_scan_on"           = "Auto";
+"mbdoccapture.auto_scan_off"          = "Manuel";
+"mbdoccapture.torch"                  = "Lampe";
+"mbdoccapture.shutter"                = "Scanner le document";
+"mbdoccapture.enhance"                = "Améliorer";
+"mbdoccapture.rotate"                 = "Pivoter";
