@@ -67,3 +67,9 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
+## SwiftPM
+.build/
+.swiftpm/
+Package.resolved
+.DS_Store
+

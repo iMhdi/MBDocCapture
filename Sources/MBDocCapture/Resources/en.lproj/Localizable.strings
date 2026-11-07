@@ -1,0 +1,17 @@
+/* MBDocCapture — default English strings. Override any of them with `MBDocCaptureConfiguration.strings`. */
+
+"mbdoccapture.scan_edit_title"        = "Adjust Corners";
+"mbdoccapture.scan_review_title"      = "Review";
+"mbdoccapture.document_capture_flip"  = "Flip your document, then tap anywhere to scan the other side.";
+"mbdoccapture.next_button"            = "Next";
+"mbdoccapture.done_button"            = "Done";
+"mbdoccapture.cancel_button"          = "Cancel";
+"mbdoccapture.hint_searching"         = "Position the document in view";
+"mbdoccapture.hint_hold_still"        = "Hold still…";
+"mbdoccapture.hint_manual"            = "Tap the shutter to scan";
+"mbdoccapture.auto_scan_on"           = "Auto";
+"mbdoccapture.auto_scan_off"          = "Manual";
+"mbdoccapture.torch"                  = "Flashlight";
+"mbdoccapture.shutter"                = "Scan document";
+"mbdoccapture.enhance"                = "Enhance";
+"mbdoccapture.rotate"                 = "Rotate";
